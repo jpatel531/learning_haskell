@@ -260,25 +260,16 @@ zip [1..] ["apple", "orange", "cherry", "mango"]
 --[(1,"apple"),(2,"orange"),(3,"cherry"),(4,"mango")]
 
 
+-- Which right angle has integers for all sides and all sides equal to or smaller than 10 has a perimeter of 24?
 
+let triangles = [ (a,b,c) | c <- [1..10], b <- [1..10], a <- [1..10] ]
 
+-- Adding the condition that they all have to be right angled triangles:
 
+let rightTriangles = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2 ]
 
+-- Adding the condition that the perimeter has to be 24
 
+let rightTriangles' = [ (a,b,c) | c <- [1..10], b <- [1..c], a <- [1..b], a^2 + b^2 == c^2, a+b+c == 24]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+-- ==> [(6,8,10)]. This is common practice in functional programming - you take a starting set of solutions then apply tranformations to those solutions and filter them until you get the right ones.
